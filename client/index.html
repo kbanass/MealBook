@@ -1,13 +1,150 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pl">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>client</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/png" href="icons/logo.png" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+    </style>
+    <link rel="stylesheet" href="src/styles/reset.css" />
+    <link rel="stylesheet" href="src/styles/style.css" />
+
+    <title>Meal Book</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <nav>
+      <img src="./icons/logo.svg" class="app-logo" />
+
+      <button class="icon-button shadow" id="delete-all-data">
+        <img src="./icons/trash.svg" />
+      </button>
+      <button class="settings-button icon-button shadow">
+        <img src="./icons/settings.svg" />
+      </button>
+    </nav>
+
+    <div class="date-picker card shadow" id="date-picker">
+      <div class="date-picker__upper-wrapper">
+        <h3 class="date-picker__month">Listopad 2025</h3>
+        <div class="date-picker__buttons-wrapper">
+          <button class="previus-week icon-button shadow">
+            <img src="./icons/left-arrow.svg" />
+          </button>
+          <button class="next-week icon-button shadow">
+            <img src="./icons/right-arrow.svg" />
+          </button>
+        </div>
+      </div>
+
+      <ol class="date-picker__days-list">
+        <li>
+          <button class="day-button" type="button" aria-selected="false">
+            <span class="day-name">pn</span>
+            <span class="day-number">10</span>
+          </button>
+        </li>
+        <li>
+          <button class="day-button" type="button" aria-selected="false">
+            <span class="day-name">wt</span>
+            <span class="day-number">11</span>
+          </button>
+        </li>
+        <li>
+          <button class="day-button" type="button" aria-selected="false">
+            <span class="day-name">śr</span>
+            <span class="day-number">12</span>
+          </button>
+        </li>
+        <li>
+          <button class="day-button" type="button" aria-selected="false">
+            <span class="day-name">cz</span>
+            <span class="day-number">13</span>
+          </button>
+        </li>
+        <li>
+          <button class="day-button" type="button" aria-selected="false">
+            <span class="day-name">pt</span>
+            <span class="day-number">14</span>
+          </button>
+        </li>
+        <li>
+          <button class="day-button" type="button" aria-selected="false">
+            <span class="day-name">so</span>
+            <span class="day-number">15</span>
+          </button>
+        </li>
+        <li>
+          <button class="day-button" type="button" aria-selected="false">
+            <span class="day-name">n</span>
+            <span class="day-number">16</span>
+          </button>
+        </li>
+      </ol>
+    </div>
+
+    <div class="current-day-meals card shadow" id="day-card">
+      <div class="card"></div>
+    </div>
+
+    <dialog id="meal-editor">
+      <button class="icon-button shadow exit-button">
+        <img src="./icons/close.svg" />
+      </button>
+      <img class="meal-editor__meal-image" src="" />
+      <form method="dialog">
+        <fieldset>
+          <legend>Jak głodny jesteś?</legend>
+          <label
+            ><input type="radio" name="fullness" value="0" required />
+            Wcale</label
+          >
+          <label><input type="radio" name="fullness" value="1" /> Trochę</label>
+          <label
+            ><input type="radio" name="fullness" value="2" /> Dość głodny</label
+          >
+          <label
+            ><input type="radio" name="fullness" value="3" /> Bardzo
+            głodny</label
+          >
+        </fieldset>
+
+        <fieldset>
+          <legend>Dlaczego jesz?</legend>
+          <label
+            ><input type="radio" name="trigger" value="stress" required />
+            Stres</label
+          >
+          <label
+            ><input type="radio" name="trigger" value="boredom" /> Nuda</label
+          >
+          <label
+            ><input type="radio" name="trigger" value="social" />
+            Towarzystwo</label
+          >
+          <label
+            ><input type="radio" name="trigger" value="routine" /> Rutyna</label
+          >
+          <label
+            ><input type="radio" name="trigger" value="craving" /> Apetyt</label
+          >
+        </fieldset>
+
+        <button type="submit">Zapisz</button>
+      </form>
+    </dialog>
+
+    <button id="camera-button" class="shadow">
+      <img src="./icons/add-picture.svg" />
+    </button>
+
+    <input
+      type="file"
+      accept="image/*"
+      capture="environment"
+      id="camera-input"
+    />
+    <script type="module" src="src/main.ts"></script>
   </body>
 </html>

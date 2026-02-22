@@ -1,24 +1,55 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import "./ts/effects";
+import DatePicker from "./ts/DatePicker";
+import DayCard from "./ts/DayCard";
+import { DayStore } from "./ts/DayStore";
+import { CameraController } from "./ts/CameraController";
+import MealService from "./ts/MealService";
+import { isOpfsSupported } from "./ts/utilities";
+import { getElement } from "./ts/utilities";
+import { MealEditor } from "./ts/MealEditor";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const opfsOk = await isOpfsSupported();
+console.log("OPFS supported:", opfsOk);
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("ServiceWorker.js")
+    .then(() => console.log("Service Worker zarejestrowany"))
+    .catch((err) => console.error("Błąd rejestracji SW", err));
+}
+
+const dayStore = new DayStore();
+
+new DatePicker(dayStore);
+
+new DayCard(dayStore, getElement("#day-card"));
+
+const mealService = new MealService(dayStore);
+
+const mealEditor = new MealEditor(
+  getElement<HTMLDialogElement>("#meal-editor"),
+  mealService
+);
+
+new CameraController(
+  getElement<HTMLInputElement>("#camera-input"),
+  getElement<HTMLButtonElement>("#camera-button"),
+  mealEditor
+);
+
+mealService.loadMealsFromDB();
+
+document.querySelector("#delete-all-data")?.addEventListener("click", () => {
+  console.log("Deleting all data...");
+  mealService.deleteAllData();
+});
+
+// TODO - Resize i kompresja zdjęć przed zapisem
+// TODO - Dokończyć CRUD (Update/Delete/Zmiana orderu)
+// TODO - Dokończenie logiki zapisu (debugging edge casy itd.)
+// TODO - Dokumentacja wszystkich funkcji
+
+// TODO - Modal z inputem mealData
+// TODO - DayCard UI
+// TODO - Touch motions (swap right/left...)
+// TODO - Deployment ( github, docker, CI/CD)

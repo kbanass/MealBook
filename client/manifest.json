@@ -1,0 +1,19 @@
+{
+  "name": "Moja PWA",
+  "short_name": "PWA",
+  "description": "Testowa PWA z aparatem i storage",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#222222",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "icons/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

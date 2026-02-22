@@ -1,0 +1,230 @@
+:root {
+  --color-primary: #a40628;
+  --color-black: #190107;
+  --color-gray: hsl(345 92 5/ 50%);
+  --color-gray-light: hsl(345 92 5 /25%);
+  --color-background: #ffffff;
+  --color-text-gray: hsl(345 92 5 /50%);
+  --color-text-black: hsl(345 92 5);
+
+  --shadow-color: 0deg 0% 63%;
+  --shadow-elevation-low: 0.5px 0.8px 1.1px hsl(var(--shadow-color) / 0.39),
+    1.9px 3.3px 4.6px -1.9px hsl(var(--shadow-color) / 0.51);
+  --shadow-elevation-medium: 0.5px 0.8px 1.1px hsl(var(--shadow-color) / 0.37),
+    2.7px 4.6px 6.4px -1px hsl(var(--shadow-color) / 0.44),
+    9.6px 16.4px 22.9px -1.9px hsl(var(--shadow-color) / 0.51);
+  --shadow-elevation-high: 0.5px 0.8px 1.1px hsl(var(--shadow-color) / 0.34),
+    4.3px 7.3px 10.2px -0.4px hsl(var(--shadow-color) / 0.37),
+    8.7px 14.8px 20.7px -0.8px hsl(var(--shadow-color) / 0.41),
+    15.8px 27px 37.8px -1.2px hsl(var(--shadow-color) / 0.44),
+    28px 47.8px 66.9px -1.6px hsl(var(--shadow-color) / 0.47),
+    47.5px 81.1px 113.5px -1.9px hsl(var(--shadow-color) / 0.5);
+}
+
+body {
+  color: var(--color-black);
+  background-color: var(--color-background);
+
+  font-family: "Inter", sans-serif;
+  line-height: 150%;
+  font-size: 0.75rem;
+  padding: 16px 24px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-logo {
+  height: 18px;
+}
+
+.icon-button {
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+}
+.icon-button > img {
+  width: 24px;
+}
+.settings-button {
+  margin-top: 8px;
+}
+
+.card {
+  max-width: 500px;
+  margin-inline: auto;
+  background-color: white;
+  border-radius: 25px;
+  padding: 12px 21px;
+}
+
+.date-picker {
+  margin-top: 24px;
+}
+
+.date-picker__upper-wrapper {
+  width: 100%;
+  max-width: 320px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.date-picker__buttons-wrapper {
+  display: flex;
+  gap: 16px;
+}
+
+.date-picker__days-list {
+  padding: 0;
+  list-style-type: none;
+
+  margin-top: 16px;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.date-picker__days-list li:last-child .day-name {
+  color: var(--color-primary);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button {
+  transition: transform 0.15s ease-in-out;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.day-button {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-block: 12px;
+  border-radius: 12px;
+  color: inherit;
+  width: 38px;
+}
+
+.day-button[aria-selected="true"] {
+  color: var(--color-background);
+  background-color: var(--color-primary);
+}
+
+.day-button[aria-current="date"] {
+  outline: var(--color-primary) 1px dashed;
+}
+
+.day-button[aria-selected="true"][aria-current="date"] {
+  outline: none;
+}
+
+.day-button span:first-of-type {
+  color: var(--color-text-gray);
+  margin-top: 0;
+}
+
+.day-button[aria-selected="true"] span:first-of-type {
+  color: var(--color-background);
+}
+
+.day-button span {
+  text-transform: capitalize;
+  font-size: 1rem;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+.date-picker__month {
+  font-weight: 800;
+}
+
+#camera-button {
+  position: fixed;
+  left: 50%;
+  bottom: 64px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  padding: 16px;
+  border: none;
+  background-color: var(--color-primary);
+}
+
+.current-day-meals {
+  margin-top: 24px;
+  min-height: 200px;
+  padding-top: 20px;
+}
+
+.current-day-meals .meal_card {
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
+}
+
+#camera-input {
+  display: none;
+}
+
+.shadow {
+  box-shadow: var(--shadow-elevation-medium);
+}
+
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  border-radius: 16px;
+  border: none;
+  box-shadow: var(--shadow-elevation-medium);
+  margin: 0;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.meal-editor__card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.meal-editor__card__nav {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.meal-editor__card__meal-image {
+  width: 200px;
+  height: 200px;
+
+  padding: 16px;
+  border: dashed 2px var(--color-text-gray);
+  border-radius: 16px;
+}
+
+.meal-editor__card ul {
+  list-style: none;
+}
