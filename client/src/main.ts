@@ -1,6 +1,6 @@
 import "./ts/effects";
 import DatePicker from "./ts/DatePicker";
-import DayCard from "./ts/DayCard";
+import MealsPanel from "./ts/MealsPanel";
 import { DayStore } from "./ts/DayStore";
 import { CameraController } from "./ts/CameraController";
 import MealService from "./ts/MealService";
@@ -22,12 +22,12 @@ const dayStore = new DayStore();
 
 new DatePicker(dayStore);
 
-new DayCard(dayStore, getElement("#day-card"));
+// new MealsPanel(dayStore, getElement(".meals-panel"));
 
 const mealService = new MealService(dayStore);
 
 const mealEditor = new MealEditor(
-  getElement<HTMLDialogElement>("#meal-editor"),
+  getElement<HTMLDialogElement>(".meal-editor"),
   mealService
 );
 

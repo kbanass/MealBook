@@ -20,16 +20,17 @@
       <button class="icon-button shadow" id="delete-all-data">
         <img src="./icons/trash.svg" />
       </button>
-      <button class="settings-button icon-button shadow">
+      <button class="icon-button shadow">
         <img src="./icons/settings.svg" />
       </button>
     </nav>
 
+    <!-- BLOK: date-picker -->
     <div class="date-picker card shadow" id="date-picker">
-      <div class="date-picker__upper-wrapper">
+      <div class="date-picker__header">
         <h3 class="date-picker__month">Listopad 2025</h3>
-        <div class="date-picker__buttons-wrapper">
-          <button class="previus-week icon-button shadow">
+        <div class="date-picker__nav">
+          <button class="previous-week icon-button shadow">
             <img src="./icons/left-arrow.svg" />
           </button>
           <button class="next-week icon-button shadow">
@@ -38,100 +39,196 @@
         </div>
       </div>
 
-      <ol class="date-picker__days-list">
+      <ol class="date-picker__days">
         <li>
           <button class="day-button" type="button" aria-selected="false">
-            <span class="day-name">pn</span>
-            <span class="day-number">10</span>
+            <span class="day-button__name">pn</span>
+            <span class="day-button__number">10</span>
           </button>
         </li>
         <li>
           <button class="day-button" type="button" aria-selected="false">
-            <span class="day-name">wt</span>
-            <span class="day-number">11</span>
+            <span class="day-button__name">wt</span>
+            <span class="day-button__number">11</span>
           </button>
         </li>
         <li>
           <button class="day-button" type="button" aria-selected="false">
-            <span class="day-name">śr</span>
-            <span class="day-number">12</span>
+            <span class="day-button__name">śr</span>
+            <span class="day-button__number">12</span>
           </button>
         </li>
         <li>
           <button class="day-button" type="button" aria-selected="false">
-            <span class="day-name">cz</span>
-            <span class="day-number">13</span>
+            <span class="day-button__name">cz</span>
+            <span class="day-button__number">13</span>
           </button>
         </li>
         <li>
           <button class="day-button" type="button" aria-selected="false">
-            <span class="day-name">pt</span>
-            <span class="day-number">14</span>
+            <span class="day-button__name">pt</span>
+            <span class="day-button__number">14</span>
           </button>
         </li>
         <li>
           <button class="day-button" type="button" aria-selected="false">
-            <span class="day-name">so</span>
-            <span class="day-number">15</span>
+            <span class="day-button__name">so</span>
+            <span class="day-button__number">15</span>
           </button>
         </li>
         <li>
           <button class="day-button" type="button" aria-selected="false">
-            <span class="day-name">n</span>
-            <span class="day-number">16</span>
+            <span class="day-button__name">n</span>
+            <span class="day-button__number">16</span>
           </button>
         </li>
       </ol>
     </div>
 
-    <div class="current-day-meals card shadow" id="day-card">
-      <div class="card"></div>
+    <!-- BLOK: meals-panel -->
+    <div class="meals-panel card shadow">
+      <h2 class="meals-panel__title">Dzisiejsze posiłki</h2>
+      <ul class="meals-panel__list">
+        <!-- BLOK: meal-card -->
+        <li class="meal-card card shadow" data-mood="satisfied">
+          <img
+            class="meal-card__photo"
+            src="public/photos/przyklad.webp"
+            alt="meal-photo"
+          />
+
+          <div class="meal-card__pre-info">
+            <div class="meal-card__header">
+              <h3>16:30</h3>
+              <button class="icon-button shadow">
+                <img src="public/icons/edit.svg" alt="edit-button" />
+              </button>
+            </div>
+
+            <div class="meal-card__details">
+              <div class="meal-card__trigger">
+                <h5>Trigger:</h5>
+                <!-- BLOK: trigger-badge -->
+                <div class="trigger-badge mini-card">
+                  <span>🍕</span>
+                  <span>Zachcianka</span>
+                </div>
+              </div>
+
+              <!-- BLOK: fullness -->
+              <div class="fullness">
+                <h5 class="fullness__label">Sytość:</h5>
+                <div class="fullness__badge mini-card">
+                  <img src="public/icons/battery-2.svg" alt="low" />
+                  <span>Głodny</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="meal-card__note mini-card">Brak notatki do posiłku</div>
+
+          <div class="meal-card__mood">
+            <button class="mood-button shadow">
+              <span>😔</span>
+              <span>Źle</span>
+            </button>
+            <button class="mood-button shadow">
+              <span>🙂</span>
+              <span>Ok</span>
+            </button>
+            <button class="mood-button shadow">
+              <span>🥰</span>
+              <span>Super</span>
+            </button>
+          </div>
+        </li>
+      </ul>
     </div>
 
-    <dialog id="meal-editor">
-      <button class="icon-button shadow exit-button">
-        <img src="./icons/close.svg" />
-      </button>
-      <img class="meal-editor__meal-image" src="" />
-      <form method="dialog">
-        <fieldset>
-          <legend>Jak głodny jesteś?</legend>
-          <label
-            ><input type="radio" name="fullness" value="0" required />
-            Wcale</label
-          >
-          <label><input type="radio" name="fullness" value="1" /> Trochę</label>
-          <label
-            ><input type="radio" name="fullness" value="2" /> Dość głodny</label
-          >
-          <label
-            ><input type="radio" name="fullness" value="3" /> Bardzo
-            głodny</label
-          >
+    <!-- BLOK: meal-editor -->
+    <dialog class="meal-editor card shadow">
+      <header class="meal-editor__header">
+        <h2 class="meal-editor__time">12:00</h2>
+        <button class="icon-button shadow">
+          <img src="./icons/close.svg" />
+        </button>
+      </header>
+      <form class="meal-editor__form" method="dialog">
+        <img class="meal-editor__photo" src="" />
+
+        <!-- BLOK: fullness-picker -->
+        <fieldset class="fullness-picker card shadow">
+          <legend>Najedzenie przed posiłkiem</legend>
+
+          <label>
+            <input type="radio" name="fullness" value="0" required />
+            <div class="trigger-button">
+              <img src="public/icons/battery-0.svg" alt="low" />
+              <span>Słabe</span>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="fullness" value="1" required />
+            <div class="trigger-button">
+              <img src="public/icons/battery-1.svg" alt="low" />
+              <span>Średnie</span>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="fullness" value="2" required />
+            <div class="trigger-button">
+              <img src="public/icons/battery-2.svg" alt="low" />
+              <span>Pełne</span>
+            </div>
+          </label>
         </fieldset>
 
-        <fieldset>
-          <legend>Dlaczego jesz?</legend>
-          <label
-            ><input type="radio" name="trigger" value="stress" required />
-            Stres</label
-          >
-          <label
-            ><input type="radio" name="trigger" value="boredom" /> Nuda</label
-          >
-          <label
-            ><input type="radio" name="trigger" value="social" />
-            Towarzystwo</label
-          >
-          <label
-            ><input type="radio" name="trigger" value="routine" /> Rutyna</label
-          >
-          <label
-            ><input type="radio" name="trigger" value="craving" /> Apetyt</label
-          >
+        <!-- BLOK: trigger-picker -->
+        <fieldset class="trigger-picker card shadow">
+          <div class="trigger-picker__row trigger-picker__row--3">
+            <label>
+              <input type="radio" name="trigger" value="routine" required />
+              <div class="trigger-button">
+                <span>⏰</span>
+                <span>Rutyna</span>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="trigger" value="stress" required />
+              <div class="trigger-button">
+                <span>😫</span>
+                <span>Stres</span>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="trigger" value="boredom" required />
+              <div class="trigger-button">
+                <span>🥱</span>
+                <span>Nuda</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="trigger-picker__row trigger-picker__row--2">
+            <label>
+              <input type="radio" name="trigger" value="social" required />
+              <div class="trigger-button">
+                <span>👥</span>
+                <span>Towarzysko</span>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="trigger" value="craving" required />
+              <div class="trigger-button">
+                <span>🍕</span>
+                <span>Zachcianka</span>
+              </div>
+            </label>
+          </div>
         </fieldset>
 
-        <button type="submit">Zapisz</button>
+        <button class="submit-button" type="submit">Zapisz</button>
       </form>
     </dialog>
 

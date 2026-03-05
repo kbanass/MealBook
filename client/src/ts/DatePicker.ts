@@ -29,7 +29,7 @@ export default class DatePicker {
     getElement(".next-week").addEventListener("click", () =>
       this.#goToNextWeek()
     );
-    getElement(".previus-week").addEventListener("click", () =>
+    getElement(".previous-week").addEventListener("click", () =>
       this.#goToPreviusWeek()
     );
   }
@@ -61,11 +61,13 @@ export default class DatePicker {
       monthName + " " + this.#selectedDate.getFullYear();
 
     const datePickerListItems = document.querySelectorAll<HTMLLIElement>(
-      ".date-picker__days-list li"
+      ".date-picker__days li"
     );
 
     datePickerListItems.forEach((li, index) => {
-      const dayNumberElement = li.querySelector<HTMLElement>(".day-number")!;
+      const dayNumberElement = li.querySelector<HTMLElement>(
+        ".day-button__number"
+      )!;
       dayNumberElement.innerHTML = String(
         this.#selectedWeekDates[index].getDate()
       );

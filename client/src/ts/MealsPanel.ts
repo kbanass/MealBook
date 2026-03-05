@@ -28,7 +28,7 @@ const months = [
   "12",
 ];
 
-export default class DayCard {
+export default class MealsPanel {
   #dayStore: DayStore;
   #element: HTMLElement;
   #tempUrls: string[] = [];
